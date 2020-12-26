@@ -97,7 +97,7 @@ Component supports the following attributes:
 
   ### change Event
   This event is fired when component is clicked and its `state` property is changed.
-  You can determine current state by reading `event.detail.state` property. This event bubbles up the DOM.
+  You can determine current state by reading `event.detail.state` property. This event bubbles up through the DOM.
    ```javascript
     document.querySelector("switch-component").addEventListener("change", function (e) {
       const currentState = e.detail.state;
@@ -108,9 +108,9 @@ Component supports the following attributes:
 ## Style
 
   ### Custom styles
-  You can customize component setting your css on the component itself and by using CSS custom properties (a.k.a CSS variables).
+  You can customize component, by setting your css on the component itself and by using CSS custom properties (a.k.a CSS variables).
   
-  **NOTE:** component's value mainly defined in `em` units (this unit is relative to the `font-size` property the defined on the element itself or on the parent element), that is you can change its dimensions by setting `font-size` on the component itself or on the parent element.
+  **NOTE:** component's dimension properties mainly defined in `em` unit (this unit is relative to the `font-size` property that defined on the element itself or on the parent element), thus, you can change its dimensions by setting `font-size` on the component itself or on the parent element.
   ```css
     switch-component {
       width: 50px;
@@ -129,7 +129,7 @@ Component supports the following attributes:
     }
   ```
   ### CSS custom properties
-  The following properties can be used to customize the component.
+  The following properties can be used to customize the component:
   
    #### --switch-lever--background
    Sets background on the component's lever. [default value: rgb(230, 230, 230)]
@@ -153,10 +153,10 @@ Component supports the following attributes:
    Sets default color of the component's `off-label`. [default value: rgb(205, 92, 92)] 
   
    #### --switch_checked--on-text-color
-   Sets color of the component's `on-label` when label is in the active state. [default value: rgb(112, 179, 173)]
+   Sets color of the component's `on-label` when label is active. [default value: rgb(112, 179, 173)]
    
    #### --switch_checked--off-text-color
-   Sets color of the component's `off-label` when label is in the active state. [default value: rgb(158, 158, 158)]
+   Sets color of the component's `off-label` when label is active. [default value: rgb(158, 158, 158)]
    
    #### --switch_disabled--on-text-color
    Sets color of the component's `on-label` when component is in the disabled state. [default value: rgb(158, 158, 158)]
