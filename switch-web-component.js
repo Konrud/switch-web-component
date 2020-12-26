@@ -11,7 +11,6 @@
       this._onSwitcherChange = this._onSwitcherChange.bind(this);
       this._onSwitchContainerKeyDown = this._onSwitchContainerKeyDown.bind(this);
       this._onSwitchContainerKeyUp = this._onSwitchContainerKeyUp.bind(this);
-      this._private_state = "off";
       
       this._switcher = this.shadowRoot.getElementById("switcher");
       this._switchLever = this.shadowRoot.getElementById("switchLever");
@@ -137,7 +136,7 @@
     get onLabel () {
       const onTextElem = this.shadowRoot.querySelector(".switch__on-text");
       if(onTextElem) {
-        return offTextElem.textContent;
+        return onTextElem.textContent;
       }
     }
     
@@ -233,7 +232,7 @@
     _onSwitcherChange (e) {
       const switcher = e.currentTarget;
       this.setAttribute("aria-checked", switcher.checked);
-      this._private_state = switcher.checked ? "on" : "off";
+      this.state = switcher.checked ? this.onLabel : this.offLabel;
       this._dispatchCustomChangeEvent();
     }
     
@@ -287,9 +286,10 @@
       --switch-lever_active--handle-box-shadow: rgba(38,166,154,0.1);
       --switch--on-text-color: rgb(158, 158, 158);
       --switch--off-text-color: rgb(205, 92, 92);
-      --switch_checked--on-text-color, rgb(112, 179, 173);
-      --switch_checked--off-text-color, rgb(158, 158, 158);
+      --switch_checked--on-text-color: rgb(112, 179, 173);
+      --switch_checked--off-text-color: rgb(158, 158, 158);
       --switch_focus--background: rgb(255 255 255);
+      --switch_focus--outline-color: rgb(100, 149, 237);
       --switch_disabled--off-text-color: rgb(158, 158, 158);
       --switch_disabled--on-text-color: rgb(158, 158, 158);
     }
@@ -303,11 +303,15 @@
       cursor: not-allowed;
       pointer-events: none;
     }
+
+    :host(:focus) {
+      outline: none;
+    }
     
     .switch {
       position: relative;
       display: inline-block;
-      max-width: 9.375em;/*150px*/
+      min-width: 9.375em;/*150px*/
       cursor: pointer;
       -moz-user-select: none;
       -webkit-user-select: none;
@@ -318,7 +322,7 @@
 
     /**focus state**/
     .switch [type=checkbox]:not(:hover):not(:active):focus ~ .switch__lever {
-     box-shadow: 1px 0 2px rgb(197 195 195) inset, -1px 1px 4px rgb(197 195 195) inset, 0px 0px 0 8px var(--switch_focus--background, rgb(255 255 255)), 0px 0px 0 9px rgb(100, 149, 237);
+     box-shadow: 1px 0 2px rgb(197 195 195) inset, -1px 1px 4px rgb(197 195 195) inset, 0px 0px 0 8px var(--switch_focus--background, rgb(255 255 255)), 0px 0px 0 9px var(--switch_focus--outline-color, rgb(100, 149, 237));
     }
     
     /**switch lever**/
