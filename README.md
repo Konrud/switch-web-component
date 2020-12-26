@@ -29,6 +29,7 @@ Chrome 54, Edge 79, Firefox 63, Opera 41, Safari 10.1, iOS Safari 10.3, Samsung 
 
 
 ## Attributes
+Component supports the following attributes:
 
   ### state
   State attribute indicates current state of the component, by default `state` receives value from the `onLabel` and `offLabel` properties. Initial state can be set using property `state` of the component or via HTML attribute which can be set on the component.
