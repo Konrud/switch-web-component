@@ -394,7 +394,7 @@
     }
 
     .switch--elastic:active .switch__lever::before,
-    .switch__lever.is-active::before {
+    .switch--elastic .switch__lever.is-active::before {
       width: 2.3em; 
     }
 
