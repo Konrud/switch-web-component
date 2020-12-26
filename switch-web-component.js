@@ -34,7 +34,7 @@
         this._switcher.addEventListener("change", this._onSwitcherChange);
       }
      
-      if(this._switchLever) {
+      if(this._switchContainer) {
         this._switchContainer.addEventListener("keydown", this._onSwitchContainerKeyDown, true);
         this._switchContainer.addEventListener("keyup", this._onSwitchContainerKeyUp, true);
       }
