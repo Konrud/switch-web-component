@@ -5,6 +5,22 @@ Switch Web Component (Using Shadow DOM)
 The `<switch-component></switch-component>` is functionally identical to the checkbox, except that instead of representing "checked" and "unchecked" states, it represents the states like "on" and "off". States might be changed via HTML attribute or via the property on the element itself.
 Component doesn't receive any children.
 
+## How to use
+Download [`switch-web-component.js`](switch-web-component.js) file and link it in your HTML document. Declare `<switch-component></switch-component>` in your HTML document.
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>...</head>
+ <body>
+
+  <switch-component></switch-component>
+  
+  <script src="switch-web-component.js"></script>
+ </body>
+</html>
+```
+
+
 ## Attributes
 
   ### state
