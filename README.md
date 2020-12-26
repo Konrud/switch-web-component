@@ -1,5 +1,5 @@
 # switch-web-component
-Switch Web Component (Using Shadow DOM)
+Switch Web Component (Using Custom Elements v1 and Shadow DOM)
 
 ## Summary
 The `<switch-component></switch-component>` is functionally identical to the checkbox, except that instead of representing "checked" and "unchecked" states, it represents the states like "on" and "off". States might be changed via HTML attribute or via the property on the element itself.
@@ -19,6 +19,13 @@ Download [`switch-web-component.js`](switch-web-component.js) file and link it i
  </body>
 </html>
 ```
+
+## Browser Support
+Chrome 54, Edge 79, Firefox 63, Opera 41, Safari 10.1, iOS Safari 10.3, Samsung Internet 6.0
+
+## Polyfills
+- Standalone [polyfill](https://github.com/webcomponents/custom-elements/) for Custom Elements v1.
+- A suite of polyfills supporting the Web Components specs: [webcomponents.js loader](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs)
 
 
 ## Attributes
