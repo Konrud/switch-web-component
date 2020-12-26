@@ -53,14 +53,6 @@
       this._upgradeProperty("offLabel");
     }
     
-    _upgradeProperty (prop) {
-      if(this.hasOwnProperty(prop)) {
-        const val = this[prop];
-        delete this[prop];
-        this[prop] = val;
-      }
-    }
-    
     disconnectedCallback (e) {
       // run clean up code here
       if(this._switcher) {
@@ -81,7 +73,6 @@
     }
     
     attributeChangedCallback (name, prevVal, curVal) {
-   
       if(name === "elastic") {
          this._handleElasticAttributeChange(this.elastic);
       } 
@@ -96,27 +87,6 @@
       
       if(name === "off-label") {
         this.offLabel = curVal;
-      }
-    }
-    
-    _handleElasticAttributeChange(isElastic) {
-      const switchContainer = this.shadowRoot.querySelector(".switch");
-      if(isElastic && switchContainer) {
-        switchContainer.classList.add("switch--elastic");
-      } else if (switchContainer) {
-        switchContainer.classList.remove("switch--elastic");
-      }
-    }
-    
-    _handleDisabledAttributeChange(isDisabled) {
-      this._setAriaDisabled(this, isDisabled);
-      
-      if(this._switcher) {
-        this._switcher.disabled = isDisabled;
-        if(isDisabled) { // remove focus / change document.activeElement
-          this.blur();
-          this._switcher.blur();
-        }
       }
     }
     
@@ -201,6 +171,35 @@
      /*===========================
      PRIVATE FUNCTIONS 
      =============================*/
+    _handleElasticAttributeChange(isElastic) {
+      const switchContainer = this.shadowRoot.querySelector(".switch");
+      if(isElastic && switchContainer) {
+        switchContainer.classList.add("switch--elastic");
+      } else if (switchContainer) {
+        switchContainer.classList.remove("switch--elastic");
+      }
+    }
+    
+    _handleDisabledAttributeChange(isDisabled) {
+      this._setAriaDisabled(this, isDisabled);
+      
+      if(this._switcher) {
+        this._switcher.disabled = isDisabled;
+        if(isDisabled) { // remove focus / change document.activeElement
+          this.blur();
+          this._switcher.blur();
+        }
+      }
+    }
+    
+    _upgradeProperty (prop) {
+      if(this.hasOwnProperty(prop)) {
+        const val = this[prop];
+        delete this[prop];
+        this[prop] = val;
+      }
+    }
+    
     _setAriaDisabled(elem, value) {
       if(value !== true && value !== false) return;
       
