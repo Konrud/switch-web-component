@@ -31,17 +31,31 @@ Chrome 54, Edge 79, Firefox 63, Opera 41, Safari 10.1, iOS Safari 10.3, Samsung 
 ## Attributes
 Component supports the following attributes:
 
-  ### state
-  State attribute indicates current state of the component, by default `state` receives value from the `onLabel` and `offLabel` properties. Initial state can be set using property `state` of the component or via HTML attribute which can be set on the component.
+  ### init-state [read-only]
+  Init state attribute can be set, at initialization, on the component in order to set its initial value for the `state` property. This property is read-only and can not be reassigned after the initialization. The value of this attribute must be equal to the `onLabel` property, otherwise it is considered as invalid at won't be reflected on the `state` property. 
   ```HTML
+    // get via property
+    const switch = document.getElementById("switch");
+    const initState = switch.initState;
+
+   // set on HTML Element
+   <switch-component init-state="open"></switch-component>
+  ```
+
+  ### state
+  State property indicates current state of the component, by default `state` receives value from the `offLabel` property. Initial state can be set using `init-state` attribute on the component via HTML. Although this property is duplicated as HTML attribute on the component, it can not be manipulated directly via HTML. It's rather used in order to be some sort of indication of the component's current state, you can use it as a hook in your CSS.
+  ```javascript
     // set via property
     const switch = document.getElementById("switch");
     switch.state = "open";
-
-   // set on HTML Element
-   <switch-component state="open"></switch-component>
   ```
-  **NOTE:** `state` property, if not set explicitly on the element's creation, will be `null`. It will be changed on each click of the component and will get a value from the `onLabel` and `offLabel` properties.
+  ```css
+    switch-component[state="open"] {
+       background: firebrick;
+    }
+  ```
+  
+  **NOTE:** `state` property, if not set explicitly or via `init-state` property on the element's creation, will get its default value from the `offLabel` property (see below). It will be changed on each click of the component and get a value from the `onLabel` and `offLabel` properties respectively.
   
   ### disabled
   Disabled attribute indicates that component is disabled. This attribute is a boolean attribute, 
