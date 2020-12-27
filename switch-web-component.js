@@ -50,6 +50,13 @@
       this._upgradeProperty("elastic");
       this._upgradeProperty("onLabel");
       this._upgradeProperty("offLabel");
+      
+      const initStateValue = this.getAttribute("init-state");
+      
+      // initial state set at the initialization state via HTML
+      if(initStateValue !== null && this._switcher && (initStateValue === this.onLabel)) {
+         this._switcher.click();
+      }
     }
     
     disconnectedCallback (e) {
@@ -89,16 +96,21 @@
       }
     }
     
+    /**===  initState ===**/
+    get initState () {
+      return this.getAttribute("init-state");
+    }
+    
     /**===  state ===**/
     get state () {
-      return this.getAttribute("state");
+      return this.getAttribute("state") || this.offLabel;
     }
     
     set state (val) {
-      if(!val) return;
+      if(!val || val === this.state) return;
       
       this.setAttribute("state", val);
-      
+
       if(this._switcher) {
         this._switcher.click();
       }
@@ -232,7 +244,8 @@
     _onSwitcherChange (e) {
       const switcher = e.currentTarget;
       this.setAttribute("aria-checked", switcher.checked);
-      this.state = switcher.checked ? this.onLabel : this.offLabel;
+      const newState = switcher.checked ? this.onLabel : this.offLabel;
+      this.setAttribute("state", newState);
       this._dispatchCustomChangeEvent();
     }
     
