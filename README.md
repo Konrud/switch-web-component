@@ -33,11 +33,12 @@ Component supports the following attributes:
 
   ### init-state [read-only]
   Init state attribute can be set, at initialization, on the component in order to set its initial value for the `state` property. This property is read-only and can not be reassigned after the initialization. The value of this attribute must be equal to the `onLabel` property, otherwise it is considered as invalid at won't be reflected on the `state` property. 
-  ```HTML
+  ```javascript
     // get via property
     const switch = document.getElementById("switch");
     const initState = switch.initState;
-
+  ```
+  ```HTML
    // set on HTML Element
    <switch-component init-state="open"></switch-component>
   ```
@@ -62,11 +63,12 @@ Component supports the following attributes:
   that is, if specified on the component it sets to `true`, otherwise it will be `false`.
   When applied, component sets `aria-disabled="true"`, removes focus and can not be interacted by the user.
   This attribute can be set either via property or on the component itself in HTML.
-  ```HTML
+  ```javascript
     // set via property
     const switch = document.getElementById("switch");
     switch.disabled = true;
-
+  ```
+  ```HTML
    // set on HTML Element
    <switch-component disabled></switch-component>
   ```
@@ -74,11 +76,12 @@ Component supports the following attributes:
   ### elastic
   Elastic boolean attribute indicates that component's should apply elastic style on its lever. When clicked its lever will get an elastic style and animation.
   This attribute can be set both via HTML attribute and via property.  
-  ```HTML
+  ```javascript
     // set via property
     const switch = document.getElementById("switch");
     switch.elastic = true;
-
+  ```
+  ```HTML
    // set on HTML Element
    <switch-component elastic></switch-component>
   ```
@@ -86,11 +89,12 @@ Component supports the following attributes:
   ### on-label
   This attribute changes the default label when element is in the active state (e.g. "on").
   This attribute can be set via HTML attribute with the desired label or via property.
-   ```HTML
+   ```javascript
     // set via property
     const switch = document.getElementById("switch");
     switch.onLabel = "open";
-
+  ```
+  ```HTML
    // set on HTML Element
    <switch-component on-label="open"></switch-component>
   ```
@@ -98,11 +102,12 @@ Component supports the following attributes:
   ### off-label
   This attribute changes the default label when element is in the inactive state (e.g. "off").
   This attribute can be set via HTML attribute with the desired label or via property.
-   ```HTML
+   ```javascript
     // set via property
     const switch = document.getElementById("switch");
     switch.offLabel = "close";
-
+  ```
+  ```HTML
    // set on HTML Element
    <switch-component off-label="close"></switch-component>
   ```
