@@ -39,6 +39,9 @@
         this._switchContainer.addEventListener("keyup", this._onSwitchContainerKeyUp, true);
       }
       
+      // set initial value for the state
+      this.setAttribute("state", this.state);
+      
       // A user may set a property on an _instance_ of an element,
       // before its prototype has been connected to this class.
       // The `_upgradeProperty()` method will check for any instance properties
