@@ -29,7 +29,21 @@ Chrome 54, Edge 79, Firefox 63, Opera 41, Safari 10.1, iOS Safari 10.3, Samsung 
 
 
 ## Attributes
-Component supports the following attributes:
+Common attributes like `id`, `hidden` are supported and can be used as with the regular HTML Elements.
+
+Component also supports the following attributes:
+
+  ### name [read-only]
+  Name of the component. Can be set only via HTML.
+  ```javascript
+    // get via property
+    const switch = document.getElementById("switch");
+    const name = switch.name;
+  ```
+  ```HTML
+   // set on HTML Element
+   <switch-component name="my-switch-component"></switch-component>
+  ```
 
   ### init-state [read-only]
   Init state attribute can be set, at initialization, on the component in order to set its initial value for the `state` property. This property is read-only and can not be reassigned after the initialization. The value of this attribute must be equal to the `onLabel` property, otherwise it is considered as invalid at won't be reflected on the `state` property. 
