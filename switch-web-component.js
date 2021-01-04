@@ -99,6 +99,11 @@
       }
     }
     
+    /**===  name ===**/
+    get name () {
+      return this.getAttribute("name");
+    }
+    
     /**===  initState ===**/
     get initState () {
       return this.getAttribute("init-state");
