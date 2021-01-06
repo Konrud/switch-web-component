@@ -1,6 +1,9 @@
 # switch-web-component
 Switch Web Component (Using Custom Elements v1 and Shadow DOM)
 
+## Preview
+[You can see it live](https://konrud.github.io/switch-web-component/Index.html)
+
 ## Summary
 The `<switch-component></switch-component>` is functionally identical to the checkbox, except that instead of representing "checked" and "unchecked" states, it represents the states like "on" and "off". States might be changed via HTML attribute or via the property on the element itself.
 Component doesn't receive any children.
