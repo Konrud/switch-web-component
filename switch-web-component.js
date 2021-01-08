@@ -331,8 +331,6 @@
     
     .switch {
       position: relative;
-      display: inline-block;
-      min-width: 9.375em;/*150px*/
       cursor: pointer;
       -moz-user-select: none;
       -webkit-user-select: none;
