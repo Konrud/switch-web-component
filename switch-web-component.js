@@ -238,7 +238,7 @@
         detail: {
           state: this.state
         },
-        bubles: true
+        bubbles: true
       };
       
       const customChangeEvent = new CustomEvent("change", customEventArgs);
