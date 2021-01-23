@@ -130,7 +130,7 @@ Component also supports the following attributes:
   ```
   
 ## Properties
-Component supports the following attributes:  
+Component supports the following properties:  
 
   ### name [read-only]
   Name of the component.
@@ -151,7 +151,8 @@ Component supports the following attributes:
   ```
 
   ### state
-  Indicates current state of the component, by default `state` receives value from the `offLabel` property. Initial state can be set using `init-state` attribute on the component via HTML. Although this property is duplicated as HTML attribute on the component, it can not be manipulated directly via HTML. It's rather used in order to be some sort of indication of the component's current state, you can use it as a hook in your CSS.
+  Indicates current state of the component, by default `state` receives value from the `offLabel` property. 
+  Initial state can be set using `init-state` attribute on the component via HTML. Although this property is duplicated as HTML attribute on the component, it can not be manipulated directly via HTML. It's rather used in order to be some sort of indication of the component's current state, you can use it as a hook in your CSS.
   ```javascript
     // set property value
     const switch = document.getElementById("switch");
