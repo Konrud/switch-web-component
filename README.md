@@ -129,6 +129,70 @@ Component also supports the following attributes:
    <switch-component off-label="close"></switch-component>
   ```
   
+## Properties
+Component supports the following attributes:  
+
+  ### name [read-only]
+  Name of the component.
+  
+  ```javascript
+    // get property value
+    const switch = document.getElementById("switch");
+    const name = switch.name;
+  ```
+
+  ### init-state [read-only]
+  Determines component's initial value for the `state` property.
+  
+  ```javascript
+    // get property's
+    const switch = document.getElementById("switch");
+    const initState = switch.initState;
+  ```
+
+  ### state
+  Indicates current state of the component, by default `state` receives value from the `offLabel` property. Initial state can be set using `init-state` attribute on the component via HTML. Although this property is duplicated as HTML attribute on the component, it can not be manipulated directly via HTML. It's rather used in order to be some sort of indication of the component's current state, you can use it as a hook in your CSS.
+  ```javascript
+    // set property value
+    const switch = document.getElementById("switch");
+    switch.state = "open";
+  ```
+  
+  **NOTE:** `state` property, if not set explicitly or via `init-state` property on the element's creation, will get its default value from the `offLabel` property (see below). It will be changed on each click of the component and get a value from the `onLabel` and `offLabel` properties respectively.
+  
+  ### disabled
+  Indicates that component is disabled.
+  When applied, component sets `aria-disabled="true"`, removes focus and can not be interacted by the user.
+  ```javascript
+    // set property value
+    const switch = document.getElementById("switch");
+    switch.disabled = true;
+  ```
+
+  ### elastic
+  Indicates that component's should apply elastic style on its lever. When clicked its lever will get an elastic style and animation.
+  ```javascript
+    // set property value
+    const switch = document.getElementById("switch");
+    switch.elastic = true;
+  ```
+
+  ### on-label
+  Changes default label when element is in the active state (e.g. "on").
+   ```javascript
+    // set property value
+    const switch = document.getElementById("switch");
+    switch.onLabel = "open";
+  ```
+  
+  ### off-label
+  Changes default label when element is in the inactive state (e.g. "off").
+   ```javascript
+    // set property value
+    const switch = document.getElementById("switch");
+    switch.offLabel = "close";
+  ```
+  
 ## Events
 
   ### change Event
@@ -168,46 +232,46 @@ Component also supports the following attributes:
   The following properties can be used to customize the component:
   
    #### --switch-lever--background
-   Sets background on the component's lever. [default value: rgb(230, 230, 230)]
+   Sets `background` on the component's lever. [default value: rgb(230, 230, 230)]
    
    #### --switch-lever_checked--background
-   Sets background on the component's lever when component is in active state. [default value: rgb(125, 200, 193)]
+   Sets `background` on the component's lever when component is in **active** state. [default value: rgb(125, 200, 193)]
    
    #### --switch-lever--handle-background
-   Sets background on the component lever's handle. [default value: rgb(247, 245, 245)]
+   Sets `background` on the component lever's handle. [default value: rgb(247, 245, 245)]
    
    #### --switch-lever_checked--handle-background
-   Sets background on the component lever's handle when component is in active state. [default value: rgb(112, 179, 173)]
+   Sets` background` on the component lever's handle when component is in **active** state. [default value: rgb(112, 179, 173)]
    
    #### --switch-lever_active--handle-box-shadow
-   Sets box-shadow on the component lever's handle when component is clicked. [default value: rgba(38,166,154,0.1)]
+   Sets `box-shadow` on the component lever's handle when component is clicked. [default value: rgba(38,166,154,0.1)]
    
    #### --switch--on-text-color
-   Sets default color of the component's `on-label`. [default value: rgb(158, 158, 158)] 
+   Sets **default** `color` of the component's `on-label`. [default value: rgb(158, 158, 158)] 
    
    #### --switch--off-text-color
-   Sets default color of the component's `off-label`. [default value: rgb(205, 92, 92)] 
+   Sets **default** `color` of the component's `off-label`. [default value: rgb(205, 92, 92)] 
   
    #### --switch_checked--on-text-color
-   Sets color of the component's `on-label` when label is active. [default value: rgb(112, 179, 173)]
+   Sets `color` of the component's `on-label` when label is **active**. [default value: rgb(112, 179, 173)]
    
    #### --switch_checked--off-text-color
-   Sets color of the component's `off-label` when label is active. [default value: rgb(158, 158, 158)]
+   Sets `color` of the component's `off-label` when label is **active**. [default value: rgb(158, 158, 158)]
    
    #### --switch_disabled--on-text-color
-   Sets color of the component's `on-label` when component is in the disabled state. [default value: rgb(158, 158, 158)]
+   Sets `color` of the component's `on-label` when component is in the **disabled** state. [default value: rgb(158, 158, 158)]
    
    #### --switch_disabled--off-text-color
-   Sets color of the component's `off-label` when component is in the disabled state. [default value: rgb(158, 158, 158)]
+   Sets `color` of the component's `off-label` when component is in the **disabled** state. [default value: rgb(158, 158, 158)]
    
    #### --switch_focus--background
-   Sets background on the component lever's when component is in the focus state. [default value: rgb(255 255 255)]
+   Sets `background` on the component lever's when component is in the **focus** state. [default value: rgb(255 255 255)]
    
    #### --switch_focus--outline-color
-   Sets color of the outline on the component lever's when component is in the focus state. [default value: rgb(100, 149, 237)]
+   Sets `color` of the `outline` on the component lever's when component is in the **focus** state. [default value: rgb(100, 149, 237)]
    
    #### --switch_focus--outline-color
-   Sets color of the outline on the component lever's when component is in the focus state. [default value: rgb(100, 149, 237)]
+   Sets `color` of the `outline` on the component lever's when component is in the **focus** state. [default value: rgb(100, 149, 237)]
   
   
   
