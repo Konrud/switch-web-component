@@ -378,7 +378,7 @@
       right: -0.125em;/*-2px*/
     }
 
-    :dir(rtl) .switch .switch__lever::before {
+    .switch:dir(rtl) .switch__lever::before {
       left: initial;
       right: -0.125em;/*-2px*/
     }
@@ -400,7 +400,7 @@
       transform: translateX(-111%);
     }
 
-    :dir(rtl) .switch [type="checkbox"]:checked ~ .switch__lever:before {
+    .switch:dir(rtl) [type="checkbox"]:checked ~ .switch__lever:before {
       transform: translateX(-111%);
     }
 
