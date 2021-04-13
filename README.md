@@ -210,7 +210,7 @@ Component supports the following properties:
 
   ### RTL (right-to-left) styles
   Component has built-in support for the RTL (right-to-left) styling. To enable this support `dir="rtl"` attribute should be set on the component. 
-  Example: `<switch-component dir="rtl"></switch-component>`.
+  Example: `<switch-component dir="rtl"></switch-component>`. If your browser supports the [`:dir()`](https://developer.mozilla.org/en-US/docs/Web/CSS/:dir) pseduo-class you don't need to add `dir="rtl"` on the element itself, but can add it on any ancestor element (e.g. `<body dir="rtl">`). As of 04.2021 only Firefox 49 has full support for this pseudo-class.
 
   ### Custom styles
   You can customize component, by setting your css on the component itself and by using CSS custom properties (a.k.a CSS variables). 
