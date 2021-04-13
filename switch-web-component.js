@@ -378,6 +378,11 @@
       right: -0.125em;/*-2px*/
     }
 
+    :dir(rtl) .switch .switch__lever::before {
+      left: initial;
+      right: -0.125em;/*-2px*/
+    }
+
     .switch__lever:active::before {
       box-shadow: 0 0.0625em 0.1875em 0.0625em rgba(0,0,0,0.4),0 0 0 0.625em var(--switch-lever_active--handle-box-shadow, rgba(38,166,154,0.1));
     }
@@ -392,6 +397,10 @@
     }
 
     :host([dir="rtl"]) .switch [type="checkbox"]:checked ~ .switch__lever:before {
+      transform: translateX(-111%);
+    }
+
+    :dir(rtl) .switch [type="checkbox"]:checked ~ .switch__lever:before {
       transform: translateX(-111%);
     }
 
