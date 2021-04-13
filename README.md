@@ -209,7 +209,7 @@ Component supports the following properties:
 ## Style
 
   ### Custom styles
-  You can customize component, by setting your css on the component itself and by using CSS custom properties (a.k.a CSS variables).
+  You can customize component, by setting your css on the component itself and by using CSS custom properties (a.k.a CSS variables). Component has built-in support for the RTL (left-to-right) styling.
   
   **NOTE:** component's dimension properties mainly defined in `em` unit (this unit is relative to the `font-size` property that defined on the element itself or on the parent element), thus, you can change its dimensions by setting `font-size` on the component itself or on the parent element.
   ```css
