@@ -373,7 +373,7 @@
       transition: transform .1s ease;
     }
 
-    [dir="rtl"] .switch__lever::before {
+    :host([dir="rtl"]) .switch__lever::before {
       left: initial;
       right: -0.125em;/*-2px*/
     }
@@ -391,7 +391,7 @@
       background: var(--switch-lever_checked--handle-background, rgb(112, 179, 173));
     }
 
-    [dir="rtl"] [type="checkbox"]:checked ~ .switch__lever:before {
+    :host([dir="rtl"]) [type="checkbox"]:checked ~ .switch__lever:before {
       transform: translateX(-111%);
     }
 
