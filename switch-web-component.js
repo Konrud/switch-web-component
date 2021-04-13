@@ -331,6 +331,8 @@
     
     .switch {
       position: relative;
+      display: inline-flex;
+      align-items: center;
       cursor: pointer;
       -moz-user-select: none;
       -webkit-user-select: none;
