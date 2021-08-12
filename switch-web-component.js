@@ -379,7 +379,7 @@
     }
 
     /*
-      For Browsers That Support `:dir()` pseudo-class. As of 04.2021 only Firefox 49 has full support.
+      For Browsers That Support `dir()` pseudo-class. As of 04.2021 only Firefox 49 has full support.
       https://developer.mozilla.org/en-US/docs/Web/CSS/:dir
     */
     .switch:dir(rtl) .switch__lever::before {
