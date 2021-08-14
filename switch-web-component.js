@@ -382,7 +382,7 @@
     /*
     https://developer.mozilla.org/en-US/docs/Web/CSS/:host-context()
     */
-    :host-context([dir="rtl"]) .switch .switch__lever {
+    :host-context([dir="rtl"]):host(:not([dir])) .switch .switch__lever {
       --dirLTR: -1;
     }
 
@@ -390,11 +390,7 @@
       For Browsers That Support dir() pseudo-class. As of 04.2021 only Firefox 49 has full support.
       https://developer.mozilla.org/en-US/docs/Web/CSS/:dir
     */
-    .switch:dir(rtl) .switch__lever {
-      --dirLTR: -1;
-    }
-
-    :host-context(:dir(rtl)) .switch .switch__lever {
+    :host(:dir(rtl)) .switch__lever {
       --dirLTR: -1;
     }
 
@@ -446,7 +442,7 @@
       --transform-origin: 100% 50%;
     }
 
-    :host-context([dir="rtl"]) .switch--elastic .switch__lever {
+    :host-context([dir="rtl"]):host(:not([dir])) .switch--elastic .switch__lever {
       --transform-origin: 100% 50%;
     }
 
@@ -454,11 +450,7 @@
       For Browsers That Support dir() pseudo-class. As of 04.2021 only Firefox 49 has full support.
       https://developer.mozilla.org/en-US/docs/Web/CSS/:dir
     */
-    .switch:dir(rtl) .switch--elastic .switch__lever {
-      --transform-origin: 100% 50%;
-    }
-
-    :host-context(:dir(rtl)) .switch--elastic .switch__lever {
+    :host(:dir(rtl)) .switch--elastic .switch__lever {
       --transform-origin: 100% 50%;
     }
 
@@ -471,7 +463,7 @@
       --transform-origin: 0% 50%;
     }
 
-    :host-context([dir="rtl"]) .switch--elastic [type="checkbox"]:checked ~ .switch__lever {
+    :host-context([dir="rtl"]):host(:not([dir])) .switch--elastic [type="checkbox"]:checked ~ .switch__lever {
       --transform-origin: 0% 50%;
     }
 
@@ -479,11 +471,7 @@
       For Browsers That Support dir() pseudo-class. As of 04.2021 only Firefox 49 has full support.
       https://developer.mozilla.org/en-US/docs/Web/CSS/:dir
     */
-    .switch:dir(rtl) .switch--elastic [type="checkbox"]:checked ~ .switch__lever {
-     --transform-origin: 0% 50%;
-    }
-
-    :host-context(:dir(rtl)) .switch--elastic [type="checkbox"]:checked ~ .switch__lever {
+    :host(:dir(rtl)) .switch--elastic [type="checkbox"]:checked ~ .switch__lever {
       --transform-origin: 0% 50%;
     }
 
