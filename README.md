@@ -278,9 +278,14 @@ Component supports the following properties:
    #### --switch_focus--outline-color
    Sets `color` of the `outline` on the component lever's when component is in the **focus** state. [default value: rgb(100, 149, 237)]
   
-  
-  
-  
+
+  ## Versioning
+
+  - **Version 1** `[Previous Versions]` - Initial release. 
+
+  - **Version 2** **`[Current]`**: 
+    - Switch lever's CSS has been rewritten to use only `transform` and custom CSS properties. 
+    - CSS for `RTL` and `Elastic` styles, for the switch lever, has also been rewritten.
   
   
   
