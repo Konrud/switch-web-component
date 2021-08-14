@@ -1,47 +1,47 @@
-; (function () {
+;(function () {
   "use strict";
-
+  
   class SwitchComponent extends HTMLElement {
-
-    constructor() {
+    
+    constructor () {
       super();
-      this.attachShadow({ mode: "open" });
+      this.attachShadow({mode: "open"});
       this.shadowRoot.appendChild(_getHtmlContent());
 
       this._onSwitcherChange = this._onSwitcherChange.bind(this);
       this._onSwitchContainerKeyDown = this._onSwitchContainerKeyDown.bind(this);
       this._onSwitchContainerKeyUp = this._onSwitchContainerKeyUp.bind(this);
-
+      
       this._switcher = this.shadowRoot.getElementById("switcher");
       this._switchLever = this.shadowRoot.getElementById("switchLever");
       this._switchContainer = this.shadowRoot.getElementById("switchContainer");
     }
-
-    static get observedAttributes() {
+    
+    static get observedAttributes () {
       return ["elastic", "on-label", "off-label", "disabled"];
     }
+    
+    connectedCallback (e) {
 
-    connectedCallback(e) {
-
-      if (!this.hasAttribute("role")) {
+      if(!this.hasAttribute("role")) {
         this.setAttribute("role", "switch");
-      }
-      if (!this.hasAttribute("aria-checked")) {
+      } 
+      if(!this.hasAttribute("aria-checked")) {
         this.setAttribute("aria-checked", "false");
       }
-
-      if (this._switcher) {
+      
+      if(this._switcher) {
         this._switcher.addEventListener("change", this._onSwitcherChange);
       }
-
-      if (this._switchContainer) {
+     
+      if(this._switchContainer) {
         this._switchContainer.addEventListener("keydown", this._onSwitchContainerKeyDown, true);
         this._switchContainer.addEventListener("keyup", this._onSwitchContainerKeyUp, true);
       }
-
+      
       // set initial value for the state
       this.setAttribute("state", this.state);
-
+      
       // A user may set a property on an _instance_ of an element,
       // before its prototype has been connected to this class.
       // The `_upgradeProperty()` method will check for any instance properties
@@ -53,26 +53,26 @@
       this._upgradeProperty("elastic");
       this._upgradeProperty("onLabel");
       this._upgradeProperty("offLabel");
-
+      
       const initStateValue = this.getAttribute("init-state");
-
+      
       // initial state set at the initialization state via HTML
-      if (initStateValue !== null && this._switcher && (initStateValue === this.onLabel)) {
-        this._switcher.click();
+      if(initStateValue !== null && this._switcher && (initStateValue === this.onLabel)) {
+         this._switcher.click();
       }
     }
-
-    disconnectedCallback(e) {
+    
+    disconnectedCallback (e) {
       // run clean up code here
-      if (this._switcher) {
+      if(this._switcher) {
         this._switcher.removeEventListener("change", this._onSwitcherChange);
       }
-
-      if (this._switchContainer) {
+      
+      if(this._switchContainer) {
         this._switchContainer.removeEventListener("keydown", this._onSwitchContainerKeyDown, true);
         this._switchContainer.removeEventListener("keyup", this._onSwitchContainerKeyUp, true);
       }
-
+      
       this._switcher = null;
       this._switchLever = null;
       this._switchContainer = null;
@@ -80,200 +80,200 @@
       this._onSwitchContainerKeyDown = null;
       this._onSwitchContainerKeyUp = null;
     }
-
-    attributeChangedCallback(name, prevVal, curVal) {
-      if (name === "elastic") {
-        this._handleElasticAttributeChange(this.elastic);
-      }
-
-      if (name === "disabled") {
+    
+    attributeChangedCallback (name, prevVal, curVal) {
+      if(name === "elastic") {
+         this._handleElasticAttributeChange(this.elastic);
+      } 
+      
+      if(name === "disabled") {
         this._handleDisabledAttributeChange(this.disabled);
       }
-
-      if (name === "on-label") {
+      
+      if(name === "on-label") {
         this.onLabel = curVal;
       }
-
-      if (name === "off-label") {
+      
+      if(name === "off-label") {
         this.offLabel = curVal;
       }
     }
-
+    
     /**===  name ===**/
-    get name() {
+    get name () {
       return this.getAttribute("name");
     }
-
+    
     /**===  initState ===**/
-    get initState() {
+    get initState () {
       return this.getAttribute("init-state");
     }
-
+    
     /**===  state ===**/
-    get state() {
+    get state () {
       return this.getAttribute("state") || this.offLabel;
     }
-
-    set state(val) {
-      if (!val || val === this.state) return;
-
+    
+    set state (val) {
+      if(!val || val === this.state) return;
+      
       this.setAttribute("state", val);
 
-      if (this._switcher) {
+      if(this._switcher) {
         this._switcher.click();
       }
     }
-
+    
     /**===  disabled ===**/
-    get disabled() {
+    get disabled () {
       return this.hasAttribute("disabled");
     }
 
-    set disabled(val) {
-      if (val !== true && val !== false) return;
-
-      if (val === true) {
-        this.setAttribute("disabled", "");
+    set disabled (val) {
+      if(val !== true && val !== false) return;
+      
+      if(val === true) {
+         this.setAttribute("disabled", "");
       } else {
-        this.removeAttribute("disabled");
+         this.removeAttribute("disabled");
       }
     }
-
+    
     /**===  elatic ===**/
-    get elastic() {
+    get elastic () {
       return this.hasAttribute("elastic");
     }
-
-    set elastic(val) {
-      if (val) {
+    
+    set elastic (val) {
+      if(val) {
         this.setAttribute("elastic", "");
       } else {
         this.removeAttribute("elastic");
       }
     }
-
+    
     /**===  onLabel ===**/
-    get onLabel() {
+    get onLabel () {
       const onTextElem = this.shadowRoot.querySelector(".switch__on-text");
-      if (onTextElem) {
+      if(onTextElem) {
         return onTextElem.textContent;
       }
     }
-
-    set onLabel(val) {
-      if (val) {
+    
+    set onLabel (val) {
+      if(val) {
         const onTextElem = this.shadowRoot.querySelector(".switch__on-text");
-        if (onTextElem) {
+        if(onTextElem) {
           onTextElem.textContent = val;
         }
       }
     }
-
+    
     /**===  offLabel ===**/
-    get offLabel() {
+    get offLabel () {
       const offTextElem = this.shadowRoot.querySelector(".switch__off-text");
-      if (offTextElem) {
+      if(offTextElem) {
         return offTextElem.textContent;
       }
     }
-
-
-    set offLabel(val) {
-      if (val) {
+    
+    
+    set offLabel (val) {
+      if(val) {
         const offTextElem = this.shadowRoot.querySelector(".switch__off-text");
-        if (offTextElem) {
+        if(offTextElem) {
           offTextElem.textContent = val;
         }
       }
     }
 
-    /*===========================
-    PRIVATE FUNCTIONS 
-    =============================*/
+     /*===========================
+     PRIVATE FUNCTIONS 
+     =============================*/
     _handleElasticAttributeChange(isElastic) {
       const switchContainer = this.shadowRoot.querySelector(".switch");
-      if (isElastic && switchContainer) {
+      if(isElastic && switchContainer) {
         switchContainer.classList.add("switch--elastic");
       } else if (switchContainer) {
         switchContainer.classList.remove("switch--elastic");
       }
     }
-
+    
     _handleDisabledAttributeChange(isDisabled) {
       this._setAriaDisabled(this, isDisabled);
-
-      if (this._switcher) {
+      
+      if(this._switcher) {
         this._switcher.disabled = isDisabled;
-        if (isDisabled) { // remove focus / change document.activeElement
+        if(isDisabled) { // remove focus / change document.activeElement
           this.blur();
           this._switcher.blur();
         }
       }
     }
-
-    _upgradeProperty(prop) {
-      if (this.hasOwnProperty(prop)) {
+    
+    _upgradeProperty (prop) {
+      if(this.hasOwnProperty(prop)) {
         const val = this[prop];
         delete this[prop];
         this[prop] = val;
       }
     }
-
+    
     _setAriaDisabled(elem, value) {
-      if (value !== true && value !== false) return;
-
-      if (value === true) {
-        elem.setAttribute("aria-disabled", value);
+      if(value !== true && value !== false) return;
+      
+      if(value === true) {
+         elem.setAttribute("aria-disabled", value);
       } else {
         elem.removeAttribute("aria-disabled");
       }
     }
-
+    
     /**
     * Creates and dispateches Custom "Change" Event
     *  @param {Object} externalEventArgs - Event arguments from the external source (like external event) [optional]
     **/
-    _dispatchCustomChangeEvent(externalEventArgs) {
+    _dispatchCustomChangeEvent (externalEventArgs) {
       const customEventArgs = {
         detail: {
           state: this.state
         },
         bubbles: true
       };
-
+      
       const customChangeEvent = new CustomEvent("change", customEventArgs);
-
+      
       this.dispatchEvent(customChangeEvent);
     }
-
-    /*===========================
-    PRIVATE EVENT HANDLERS 
-    =============================*/
-    _onSwitcherChange(e) {
+    
+     /*===========================
+     PRIVATE EVENT HANDLERS 
+     =============================*/
+    _onSwitcherChange (e) {
       const switcher = e.currentTarget;
       this.setAttribute("aria-checked", switcher.checked);
       const newState = switcher.checked ? this.onLabel : this.offLabel;
       this.setAttribute("state", newState);
       this._dispatchCustomChangeEvent();
     }
-
-    _onSwitchContainerKeyDown(e) {
+    
+    _onSwitchContainerKeyDown (e) {
       // handle only "space" key
-      if (e.keyCode === 32) {
+      if(e.keyCode === 32) {
         this._switchLever.classList.add("is-active");
       }
     }
-
-    _onSwitchContainerKeyUp(e) {
+    
+    _onSwitchContainerKeyUp (e) {
       // handle only "space" key
-      if (e.keyCode === 32) {
+      if(e.keyCode === 32) {
         this._switchLever.classList.remove("is-active");
       }
     }
-
+    
   };
-
-  /**Utility Methods**/
+  
+  /**Utility Methods**/ 
   function _getHtmlContent() {
     const styles = _getCssContent();
     const template = document.createElement("template");
@@ -290,8 +290,8 @@
       `;
     return template.content.cloneNode(true);
   };
-
-  function _getCssContent() {
+  
+  function _getCssContent () {
     return `
     /**
       Initial style of the switch-component
@@ -331,8 +331,6 @@
     
     .switch {
       position: relative;
-      display: inline-flex;
-      align-items: center;
       cursor: pointer;
       -moz-user-select: none;
       -webkit-user-select: none;
@@ -349,15 +347,12 @@
     /**switch lever**/
     .switch__lever {
       position: relative;
-      display: flex;
-      align-items: center;
+      display: inline-block;
       width: 3.75em; /*60px*/
       height: 1.25em; /*20px*/
       margin: 0 0.625em; /*0 10px*/
       border-radius: 1.25em;
       vertical-align: middle;
-      --lever-position: 0%;
-      --dirLTR: 1;
       background: var(--switch-lever--background, rgb(230 230 230));
       box-shadow: 1px 0 2px rgb(197 195 195) inset, -1px 1px 4px rgb(197 195 195) inset;
       transition: background .1s;
@@ -365,26 +360,15 @@
 
     .switch__lever::before {
       content: "";
+      position: absolute;
+      top: -0.3125em;/*-5px*/
+      left: -0.125em;/*-2px*/
       width: 1.875em;/*30px*/
       height: 1.875em;/*30px*/
       border-radius: 50%;
       background: var(--switch-lever--handle-background, rgb(247, 245, 245));
       box-shadow: 1px 1px 4px rgba(0, 0, 0, .4);
-      transform-origin: var(--transform-origin);
-      transform: translateX( calc(var(--lever-position) * var(--dirLTR)) ) scaleX(var(--scale-factor, 1));
       transition: transform .1s ease;
-    }
-
-    :host([dir="rtl"]) .switch .switch__lever {
-      --dirLTR: -1;
-    }
-
-    /*
-      For Browsers That Support dir() pseudo-class. As of 04.2021 only Firefox 49 has full support.
-      https://developer.mozilla.org/en-US/docs/Web/CSS/:dir
-    */
-    .switch:dir(rtl) .switch__lever {
-      --dirLTR: -1;
     }
 
     .switch__lever:active::before {
@@ -393,10 +377,10 @@
 
     [type="checkbox"]:checked ~ .switch__lever {
       background: var(--switch-lever_checked--background, rgb(125, 200, 193));
-      --lever-position: 111%;
     }
 
     [type="checkbox"]:checked ~ .switch__lever:before {
+      transform: translateX(111%);
       background: var(--switch-lever_checked--handle-background, rgb(112, 179, 173));
     }
 
@@ -427,47 +411,22 @@
     }
 
     /*START Elastic switch*/
-    .switch--elastic .switch__lever {
-      --transform-origin: 0% 50%;
-    }
-
-    :host([dir="rtl"]) .switch--elastic .switch__lever {
-      --transform-origin: 100% 50%;
-    }
-
-    /*
-      For Browsers That Support dir() pseudo-class. As of 04.2021 only Firefox 49 has full support.
-      https://developer.mozilla.org/en-US/docs/Web/CSS/:dir
-    */
-    .switch:dir(rtl) .switch--elastic .switch__lever {
-      --transform-origin: 100% 50%;
-    }
-
     .switch--elastic [type="checkbox"]:checked ~ .switch__lever {
       transition-delay: .1s; /*for smoother background animation*/
-      --transform-origin: 100% 50%;
-    }
-
-    :host([dir="rtl"]) .switch--elastic [type="checkbox"]:checked ~ .switch__lever {
-      --transform-origin: 0% 50%;
-    }
-
-    /*
-      For Browsers That Support dir() pseudo-class. As of 04.2021 only Firefox 49 has full support.
-      https://developer.mozilla.org/en-US/docs/Web/CSS/:dir
-    */
-    .switch:dir(rtl) .switch--elastic [type="checkbox"]:checked ~ .switch__lever {
-     --transform-origin: 0% 50%;
     }
 
     .switch--elastic:active .switch__lever::before,
     .switch--elastic .switch__lever.is-active::before {
-      --scale-factor: 1.2;
+      width: 2.3em; 
     }
 
     .switch--elastic .switch__lever::before {
-      position: absolute;
-      transition: transform .3s;
+      transition: transform .3s, left .3s, width .3s;
+    }
+
+    .switch--elastic [type="checkbox"]:checked ~ .switch__lever::before {
+      transform: translateX(-100%);
+      left: 100%;
     }
     /*END Elastic switch*/
     
@@ -480,12 +439,12 @@
       border: none;
       overflow: hidden;
       clip-path: inset(100%);
-      clip: rect(0 0 0 0); /*deprecated, only for IE9-11*/
+      clip: rect(0 0 0 0); /*depreceted, only for IE9-11*/
       white-space: nowrap; /*For long content, line feeds are not interpreted as spaces and small width causes content to wrap 1 word per line: https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe*/
     }
     `;
   }
-
-  customElements.define("switch-component", SwitchComponent);
-
+  
+   customElements.define("switch-component", SwitchComponent);
+  
 })();
